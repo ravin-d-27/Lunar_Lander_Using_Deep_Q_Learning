@@ -5,6 +5,9 @@ import numpy as np
 import torch
 import torch.optim as optim
 
+
+from AI import Brain
+
 # Setting up the Lunar Environment
 
 env = gym.make('LunarLander-v2')
@@ -83,8 +86,8 @@ class DQN():
         self.stateSize = stateSize
         self.actionSize = actionSize
 
-        self.localQNetwork = Network(stateSize, actionSize).to(self.device)
-        self.targetQNetwork = Network(stateSize, actionSize).to(self.device)
+        self.localQNetwork = Brain(stateSize, actionSize).to(self.device)
+        self.targetQNetwork = Brain(stateSize, actionSize).to(self.device)
 
         self.optimizer = optim.Adam(self.localQNetwork.Parameters(), lr = lr)
         
@@ -99,3 +102,19 @@ class DQN():
         if self.timeStep == 0:
             if len(self.memory.memory) > miniBatchSize:
                 experiences = self.memory.sample(100)
+                self.learn(experiences, gamma)
+
+    def act(self, state, epsilon=0.):
+        state = torch.from_numpy(state).float().unsqueeze(0).to(self.device)
+        self.localQNetwork.eval()
+        
+        with torch.no_grad():
+            actionValues = self.localQNetwork(state)
+        
+        self.localQNetwork.train()
+        
+        if random.random() > epsilon:
+            return np.argmax(actionValues.cpu().data.numpy())
+        else:
+            return random.choice(np.arrange(self.actionSize))
+        

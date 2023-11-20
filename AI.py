@@ -18,7 +18,7 @@ class Brain(nn.Module):
 
     def __init__(self, stateSize, actionSize,seed = 42): # According to Lunar Lander in Gymnasium, stateSize is 8. 
     #Seed is the randomness, ActionSize according to Lunar Lander is 4
-        super(Network, self).__init__()
+        super(Brain, self).__init__()
         self.seed = torch.manual_seed(seed)
         self.fc1 = nn.Linear(stateSize, 64)
         self.fc2 = nn.Linear(64, 64)
