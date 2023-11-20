@@ -24,4 +24,14 @@ replay_buffer_size = int(1e5) # memory of the AI
 interpolation_parameter = 1e-3 # tou
 
 
+# Implementing the Experience Replay
+
+class ReplayMemory(object):
+
+    def __init__(self, capacity):
+        
+        self.device = torch.cuda("cuda:0" if torch.cuda.is_available() else "cpu")
+        self.capacity = capacity # Maximum size of the Memory Buffer
+
+        self.memory = []
 
