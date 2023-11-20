@@ -3,6 +3,7 @@
 import gymnasium as gym
 import numpy as np
 import torch
+import torch.optim as optim
 
 # Setting up the Lunar Environment
 
@@ -72,3 +73,29 @@ class ReplayMemory(object):
 
         return states, next_states, actions, rewards, done
         
+
+# Implementing the Deep Q Learning Class
+
+class DQN():
+
+    def __init__(self, stateSize, actionSize):
+        self.device = torch.cuda("cuda:0" if torch.cuda.is_available() else "cpu")
+        self.stateSize = stateSize
+        self.actionSize = actionSize
+
+        self.localQNetwork = Network(stateSize, actionSize).to(self.device)
+        self.targetQNetwork = Network(stateSize, actionSize).to(self.device)
+
+        self.optimizer = optim.Adam(self.localQNetwork.Parameters(), lr = lr)
+        
+        self.memory = ReplayMemory(replay_buffer_size)
+        self.timeStep = 0
+
+    
+    def step(self, state, action, reward, next_state, done):
+        self.memory.push((state, action, reward, next_state, done))
+        self.timeStep = (self.timeStep+1)%4
+
+        if self.timeStep == 0:
+            if len(self.memory.memory) > miniBatchSize:
+                experiences = self.memory.sample(100)
