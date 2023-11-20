@@ -89,7 +89,7 @@ class DQN():
         self.localQNetwork = Brain(stateSize, actionSize).to(self.device)
         self.targetQNetwork = Brain(stateSize, actionSize).to(self.device)
 
-        self.optimizer = optim.Adam(self.localQNetwork.Parameters(), lr = lr)
+        self.optimizer = optim.Adam(self.localQNetwork.parameters(), lr = lr)
         
         self.memory = ReplayMemory(replay_buffer_size)
         self.timeStep = 0
@@ -133,4 +133,10 @@ class DQN():
         
         self.optimizer.step() # Single Optimization step
         self.softUpdate(self.localQNetwork, self.targetQNetwork, interpolation_parameter)
+        
+    def softUpdate(self, localModel, targetModel, tou):
+        
+        for targetParam, localParam in zip(localModel.parameters(), localModel.parameters()):
+            targetParam.data.copy_(tou * localParam.data + (1.0 - tou) * targetParam.data)
+        
         
