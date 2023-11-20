@@ -13,3 +13,15 @@ print("State Size", stateSize)
 
 numberActions = env.action_space.n
 print("Number of Actions: ", numberActions)
+
+
+# Initializing the Hyper Parameters
+
+lr = 5e-4 # 0.0005
+miniBatchSize = 100
+gamma = 0.99
+replay_buffer_size = int(1e5) # memory of the AI
+interpolation_parameter = 1e-3 # tou
+
+
+
