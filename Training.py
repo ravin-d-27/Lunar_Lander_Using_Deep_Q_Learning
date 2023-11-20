@@ -1,6 +1,8 @@
 # Importing the Libraries
 
 import gymnasium as gym
+import numpy as np
+import torch
 
 # Setting up the Lunar Environment
 
@@ -42,3 +44,31 @@ class ReplayMemory(object):
             del self.memory[0]
 
     
+    def sample(self, batchSize):
+        experiences = random.sample(self.memory, k = batchSize)
+
+        states = np.vstack([e[0] for e in experiences if e is not None])
+        # Converting the states into Pytorch tensors
+        states = torch.from_numpy(states).float().to(self.device) # For the designated computed device
+        
+
+        actions = np.vstack([e[1] for e in experiences if e is not None])
+        # Converting the actions into Pytorch tensors
+        actions = torch.from_numpy(actions).long().to(self.device) # For the designated computed device
+        
+        rewards = np.vstack([e[2] for e in experiences if e is not None])
+        # Converting the actions into Pytorch tensors
+        rewards = torch.from_numpy(rewards).float().to(self.device) # For the designated computed device
+
+
+        next_states = np.vstack([e[3] for e in experiences if e is not None])
+        # Converting the states into Pytorch tensors
+        next_states = torch.from_numpy(next_states).float().to(self.device) # For the designated computed device
+
+        done = np.vstack([e[4] for e in experiences if e is not None]).astype(np.uint8)
+        # Converting the states into Pytorch tensors
+        done = torch.from_numpy(done).float().to(self.device) # For the designated computed device
+
+
+        return states, next_states, actions, rewards, done
+        
