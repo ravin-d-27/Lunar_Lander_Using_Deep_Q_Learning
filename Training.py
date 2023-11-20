@@ -4,7 +4,7 @@ import gymnasium as gym
 import numpy as np
 import torch
 import torch.optim as optim
-
+import torch.nn.functional as F
 
 from AI import Brain
 
@@ -117,4 +117,20 @@ class DQN():
             return np.argmax(actionValues.cpu().data.numpy())
         else:
             return random.choice(np.arrange(self.actionSize))
+    
+    def learn(self, experiences, gamma):
+        states, next_states, actions, rewards, dones = experiences
+        nextQTargets = self.targetQNetwork(next_states).detach().max(1)[0].unsqueeze(1)
+        
+        qTargets = rewards + (gamma*nextQTargets*(1-dones))
+        qExpected = self.localQNetwork(states)
+        loss = F.mse_loss(qExpected, qTargets)
+        
+        self.optimizer.zero_grad()
+        
+        # Back Propagation
+        loss.backward()
+        
+        self.optimizer.step() # Single Optimization step
+        self.softUpdate(self.localQNetwork, self.targetQNetwork, interpolation_parameter)
         
