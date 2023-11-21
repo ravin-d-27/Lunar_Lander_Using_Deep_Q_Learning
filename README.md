@@ -60,7 +60,7 @@
   <p>The training progress and average scores are printed to the console during training. Additionally, a video of the trained agent playing the game is saved as <code>video.mp4</code> for visual inspection.</p>
 
 <p>Video Reference: </p>
-  [![Lunar Lander Video](thumbnails/Lander_thumbnail.png)](Model/video.mp4)
+  <a href="https://github.com/ravin-d-27/Lunar_Lander_Using_Deep_Q_Learning/blob/main/Model/video.mp4">Lunar Lander Video</a>
 
 
 </body>
