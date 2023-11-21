@@ -102,9 +102,7 @@ class DQN():
         self.softUpdate(self.localQNetwork, self.targetQNetwork, interpolation_parameter)
         
     def softUpdate(self, localModel, targetModel, tou):
-        
-        for targetParam, localParam in zip(localModel.parameters(), localModel.parameters()):
+        for targetParam, localParam in zip(targetModel.parameters(), localModel.parameters()):
             targetParam.data.copy_(tou * localParam.data + (1.0 - tou) * targetParam.data)
-        
-    
+
 

@@ -1,7 +1,7 @@
 import gymnasium as gym
 from collections import deque, namedtuple
 import numpy as np
-
+import torch
 from Reinforce import DQN
 
 
