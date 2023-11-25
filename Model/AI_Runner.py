@@ -32,16 +32,12 @@ gamma = 0.99
 replay_buffer_size = int(1e5) # memory of the AI
 interpolation_parameter = 1e-3 # tou
 
-
-
 ### Initialize the Agent
 
 agent = Agent(state_size, number_actions)
 
 
 ### Training the agent
-
-
 
 number_episodes = 2000
 maximum_number_timesteps_per_episode = 1000
