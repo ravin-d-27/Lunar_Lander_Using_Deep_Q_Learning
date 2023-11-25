@@ -42,6 +42,17 @@
 
   <p><b>Note: The gymnasium dependencies works properly under Linux Environment. So, clone this repository on a Linux Machine. If you are in Windows Machine, consider using WSL. I have built the model from WSL and it works perfectly well.</b></p>
 
+<h2>Minimum Configuration for Running the Model: </h2>
+<b><p>Note: If this config is not getting matched with your machine, then consider using <a href="https://colab.research.google.com/">Google Colab</a>.</p></b>
+
+  <ul>
+    <li><b>CPU:</b> Intel Core i3 or AMD Ryzen 5 (For Apple, Any M series Chipset!)</li>
+    <li><b>GPU:</b> Integrated Graphics is perfectly fine (If you have GPU, you need to install NVIDIA CUDA for Faster Training)</li>
+    <li><b>RAM:</b> Atleast 8GB (If you are in Linux or Mac Machine), 16 GB is needed for Windows User (For Running the model in WSL)</li>
+    <li><b>Disk space Requried:</b> Atleast 5GB of Disk Space (For Installing the Packages)</li>
+  </ul>
+
+
   <h2>Instructions</h2>
 
   <ol>
