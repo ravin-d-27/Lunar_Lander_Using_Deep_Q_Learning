@@ -67,7 +67,7 @@ for episode in range(1, number_episodes + 1):
   print('\rEpisode {}\tAverage Score: {:.2f}'.format(episode, np.mean(scores_on_100_episodes)), end = "")
   if episode % 100 == 0:
     print('\rEpisode {}\tAverage Score: {:.2f}'.format(episode, np.mean(scores_on_100_episodes)))
-  if np.mean(scores_on_100_episodes) >= 200.0:
+  if np.mean(scores_on_100_episodes) >= 250.0:
     print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'.format(episode - 100, np.mean(scores_on_100_episodes)))
     torch.save(agent.local_qnetwork.state_dict(), 'checkpoint.pth')
     break
@@ -91,7 +91,7 @@ def show_video_of_model(agent, env_name):
         action = agent.act(state)
         state, reward, done, _, _ = env.step(action.item())
     env.close()
-    imageio.mimsave('video.mp4', frames, fps=30)
+    imageio.mimsave('video2.mp4', frames, fps=30)
 
 show_video_of_model(agent, 'LunarLander-v2')
 
@@ -103,9 +103,9 @@ def show_video():
         encoded = base64.b64encode(video)
         display(HTML(data='''<video alt="test" autoplay
                 loop controls style="height: 400px;">
-                <source src="data:video/mp4;base64,{0}" type="video/mp4" />
+                <source src="data:video/mp4;base64,{0}" type="video2/mp4" />
              </video>'''.format(encoded.decode('ascii'))))
     else:
         print("Could not find video")
 
-show_video()
+show_video()  
