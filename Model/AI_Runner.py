@@ -23,15 +23,6 @@ print('State shape: ', state_shape)
 print('State size: ', state_size)
 print('Number of actions: ', number_actions)
 
-
-# Initializing the Hyper Parameters
-
-lr = 5e-4 # 0.0005
-miniBatchSize = 100
-gamma = 0.99
-replay_buffer_size = int(1e5) # memory of the AI
-interpolation_parameter = 1e-3 # tou
-
 ### Initialize the Agent
 
 agent = Agent(state_size, number_actions)
