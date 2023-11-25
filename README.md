@@ -40,7 +40,7 @@
     <li>gymnasium (Lunar Lander environment)</li><br>
   </ul>
 
-  <p><b>Note: This gymnasium works properly under Linux Environment. If you are in Windows Machine, consider using WSL.</b></p>
+  <p><b>Note: The gymnasium dependencies works properly under Linux Environment. So, clone this repository on a Linux Machine. If you are in Windows Machine, consider using WSL. I have built the model from WSL and it works perfectly well.</b></p>
 
   <h2>Instructions</h2>
 
