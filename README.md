@@ -55,7 +55,7 @@
 
   <h2>Results</h2>
 
-  <p>The agent's performance is tracked over episodes, and training stops when the environment is considered solved (average score &gt;= 200 over the last 100 episodes).</p>
+  <p>The agent's performance is tracked over episodes, and training stops when the environment is considered solved (average score &gt;= 250 over the last 100 episodes).</p>
 
   <p>The training progress and average scores are printed to the console during training. Additionally, a video of the trained agent playing the game is saved as <code>video.mp4</code> for visual inspection.</p>
 
